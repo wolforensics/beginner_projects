@@ -1,0 +1,30 @@
+
+spec_chars = ["!","+","-","$","@","%","&","/","(",")","=","?","#"]
+
+def user_input():
+
+    has_upper = False
+    has_lower = False
+    has_digit = False
+    has_special = False
+
+    password = input("Please enter your password: ")
+    for i in password:
+
+            if i.isupper():
+                has_upper = True
+            if i.islower():
+                has_lower = True
+            if i.isdigit():
+                has_digit = True
+            if i in spec_chars:
+                has_special = True
+
+    if len(password) >= 8 and has_upper and has_lower and has_digit and has_special:
+        print("Password created successfully!")
+    else:
+        print("The password does not meet the minimum requirements. Please try again.")
+
+
+user_input()
+
