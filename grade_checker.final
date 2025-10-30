@@ -1,0 +1,70 @@
+
+student_names = []
+student_grades = []
+
+def data_input():
+    while True:               
+      student_name = input("Please enter a name (enter done when finished): ")
+      if student_name == "done":
+         print("Exiting data entry. Calculating highest and average grades:")
+         break
+
+      if not student_name.isalpha():
+            print("Please enter a valid name with alpha values.")
+            continue
+
+      try:
+        student_grade = float(input("Please enter a grade: "))
+        student_grades.append(student_grade)                  
+        student_names.append(student_name)
+      except ValueError:
+         print("Please enter a valid number.")
+         continue
+
+
+def grades_tracker():
+    grades_sum = sum(student_grades)
+    average = grades_sum / len(student_names) if student_names else 0     
+    print(f"Average grade:{average}")
+
+    highest_grade = max(student_grades)
+    max_count = student_grades.count(highest_grade)           
+
+       
+    best_students = [student_names[i] for i in range(len(student_grades)) if student_grades[i] == highest_grade]   
+
+    if max_count > 1:
+        print(f"The students with the highest grades of {highest_grade} are: {','.join(best_students)}!")  
+    else:
+      print(f"The student with the highest grade is {best_students[0]} with a grade of {highest_grade}!")
+
+
+def student_finder():
+    while True:
+        student_name = input("Please enter the student's name whose grade you want to see (enter 'done' when finished): ")
+        if student_name == "done":
+            print("Exiting program. Goodbye.")
+            break
+
+        if not student_name.isalpha():
+            print("Please enter valid alpha values.")
+            continue
+
+        if student_name in student_names:
+         student_index = student_names.index(student_name)     
+         student_grade = student_grades[student_index]         
+         print(f"{student_name}'s grade is {student_grade}.")
+
+        else:
+            print("Student not found.")
+            continue
+
+
+
+data_input()
+grades_tracker()
+student_finder()
+
+
+
+
